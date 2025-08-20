@@ -10,65 +10,66 @@ This repository contains a complete reproducible RNA-Seq pipeline for identifyin
 - Detect stage-specific and shared lncRNA signatures
 - Discover novel lncRNAs via transcript assembly
 - Generate high-quality visualizations such as volcano plots for differntial analysis
-- WGCNA 
-
-| Step | Task                                  | Script                                   |
-|------|---------------------------------------|-------------------------------------------|
-| 1️⃣   | FASTQ Extraction & Integrity Check    | `scripts/01_fastq_dump_and_md5check.sh`   |
-| 2️⃣   | STAR Alignment & Transcript Assembly | `scripts/02_star_alignment_stringtie.sh`  |
-| 3️⃣   | Read Quantification (FeatureCounts)  | `scripts/03–05_featurecounts_*.sh`        |
-| 4️⃣   | Transcript Merging & Novel lncRNA    | `scripts/06_gffcompare_novel_extraction.sh`|
-| 5️⃣   | lncRNA Extraction from GTF           | `scripts/extract_lncrnas_from_gtf.sh`     |
-| 6️⃣   | Differential Expression & Visualization | `notebooks/DESeq2_analysis.Rmd`, `notebooks/lncRNA_visualizations.ipynb` |
-| 7️⃣   | WGCNA Network Analysis of lncRNAs    | `scripts/07_wgcna_setup.R`, `notebooks/WGCNA_analysis.Rmd` |
 
 
+| Step | Task | Script |
+|------|------|--------|
+| 1️⃣   | FASTQ Extraction & Integrity Check | `fastq_dump_then_md5.sh` |
+| 2️⃣   | STAR Alignment & Transcript Assembly | `string_star.sh` |
+| 3️⃣   | Read Quantification (FeatureCounts) | `generate_featurecounts.sh` |
+| 4️⃣   | Transcript Merging & Novel lncRNA Discovery | `run_gffcompare_extract_lncRNA.sh` |
+| 5️⃣   | lncRNA Extraction from GTF | _Coming Soon (or include if available)_ |
+| 6️⃣   | Differential Expression & Visualization | `DESeq2_sumtechreps_withvisualisation.R` |
+| 7️⃣   | WGCNA Network Analysis of lncRNAs | _Coming Soon (or include if available)_ |
 
+---
 
+## 📌 Important Notes
 
 Important Notes Here.
 These are the considerations that were taken in my data edit according options and code that fits your data.
 NOT ONE SIZE FITS ALL. IS IT SO?
 
-- RNA-Seq data used here is **reverse-stranded**. 
-- STAR alignment is performed using **two-pass mode**
-- StringTie used for **transcript assembly** and merging
-- FeatureCounts run with appropriate strandedness (`-s 2`) (Tip: How to check strandness? 
-- Known and novel lncRNAs are both analyzed
-- Replicates are summed after checking batch effects
-- Metadata and replicate mapping are generated programmatically
 
+- RNA-Seq data is **reverse-stranded**, confirmed using STAR `--quantMode` output
+- STAR alignment was run in **two-pass mode**
+- StringTie used for both **assembly and merging**
+- FeatureCounts executed with **`-s 2`** to handle stranded data
+- Both **known and novel lncRNAs** are quantified
+- **Technical replicates** are collapsed after **batch effect checks**
+- Metadata and replicate mapping are **generated programmatically**
+
+---
 
 ## 📊 Visual Outputs
 
-Plots are located in the `results/` folder and include:
+All results are stored in the `results/` folder and include:
 
-- PCA for condition separation
-- Volcano & MA plots for each MS subtype
-- Heatmaps of significant lncRNAs
-- Venn diagrams for shared and unique lncRNAs
+- **PCA plots** – sample clustering by condition
+- **Volcano plots** – for each MS subtype comparison
+- **MA plots** – log2 fold change vs mean expression
+- **Heatmaps** – of significant lncRNAs
+- **Venn diagrams** – shared vs unique lncRNAs
+- **WGCNA** – module–trait relationships (when available)
+
+---
+
+## 🛠 Tools Used
+
+| Tool | Purpose |
+|------|---------|
+| `fastq-dump`, `FastQC` | Download and quality control |
+| `STAR` | Splice-aware alignment |
+| `StringTie` | Transcript assembly |
+| `featureCounts` | Read quantification |
+| `gffcompare` | Novel transcript classification |
+| `DESeq2` | Differential analysis |
+| `WGCNA` | Co-expression network analysis |
+| `R`, `ggplot2`, `pheatmap`, `EnhancedVolcano` | Plotting & statistical analysis |
+
+---
 
 
-## 🧬 Novel lncRNA Discovery
-
-- Merged transcript assemblies by biological replicate
-- Compared against reference annotations using `gffcompare`
-- Novel transcripts with class code `"u"` retained as potential novel lncRNAs
-
-
-
-🛠 Tools & Libraries
-
-| Tool/Library | Purpose |
-|--------------|---------|
-| **fastq-dump** | Raw data extraction |
-| **FastQC** | Quality control |
-| **STAR** | Splice-aware alignment |
-| **StringTie** | Transcript assembly |
-| **featureCounts** | Read quantification |
-| **gffcompare** | Novel transcript comparison |
-| **DESeq2**, **edgeR** | Differential analysis |
-| **Python (pandas, seaborn)** | Data handling & visualization |
 
 <img width="1949" height="923" alt="image" src="https://github.com/user-attachments/assets/346b3c70-7589-4fd7-83d2-62ca1e1ab9d0" />
 
