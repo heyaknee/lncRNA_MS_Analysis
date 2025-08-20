@@ -38,20 +38,6 @@ NOT ONE SIZE FITS ALL. IS IT SO?
 - **Technical replicates** are collapsed after **batch effect checks**
 - Metadata and replicate mapping are **generated programmatically**
 
----
-
-## 📊 Visual Outputs
-
-All results are stored in the `results/` folder and include:
-
-- **PCA plots** – sample clustering by condition
-- **Volcano plots** – for each MS subtype comparison
-- **MA plots** – log2 fold change vs mean expression
-- **Heatmaps** – of significant lncRNAs
-- **Venn diagrams** – shared vs unique lncRNAs
-
-
----
 
 ## 🛠 Tools Used
 
