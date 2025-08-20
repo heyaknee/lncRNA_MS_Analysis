@@ -23,13 +23,6 @@ This repository contains a complete reproducible RNA-Seq pipeline for identifyin
 | 7️⃣   | WGCNA Network Analysis of lncRNAs    | `scripts/07_wgcna_setup.R`, `notebooks/WGCNA_analysis.Rmd` |
 
 
-📁 Folder Structure
-
-- `data/`: Raw, aligned, and processed data (placeholder paths)
-- `scripts/`: All shell scripts used in processing pipeline
-- `notebooks/`: R and Python notebooks for differential expression and plotting
-- `results/`: PCA, heatmaps, volcano plots, Venn diagrams
-- `docs/`: Project summary and notes
 
 
 
