@@ -17,10 +17,9 @@ This repository contains a complete reproducible RNA-Seq pipeline for identifyin
 | 1️⃣   | FASTQ Extraction & Integrity Check | `fastq_dump_then_md5.sh` |
 | 2️⃣   | STAR Alignment & Transcript Assembly | `string_star.sh` |
 | 3️⃣   | Read Quantification (FeatureCounts) | `generate_featurecounts.sh` |
-| 4️⃣   | Transcript Merging & Novel lncRNA Discovery | `run_gffcompare_extract_lncRNA.sh` |
-| 5️⃣   | lncRNA Extraction from GTF | _Coming Soon (or include if available)_ |
-| 6️⃣   | Differential Expression & Visualization | `DESeq2_sumtechreps_withvisualisation.R` |
-| 7️⃣   | WGCNA Network Analysis of lncRNAs | _Coming Soon (or include if available)_ |
+| 4️⃣   | Transcript Merging & Novel lncRNA Discovery and extraction | `run_gffcompare_extract_lncRNA.sh` |
+| 5️⃣   | Differential Expression & Visualization | `DESeq2_sumtechreps_withvisualisation.R` |
+
 
 ---
 
@@ -50,7 +49,7 @@ All results are stored in the `results/` folder and include:
 - **MA plots** – log2 fold change vs mean expression
 - **Heatmaps** – of significant lncRNAs
 - **Venn diagrams** – shared vs unique lncRNAs
-- **WGCNA** – module–trait relationships (when available)
+
 
 ---
 
@@ -64,7 +63,6 @@ All results are stored in the `results/` folder and include:
 | `featureCounts` | Read quantification |
 | `gffcompare` | Novel transcript classification |
 | `DESeq2` | Differential analysis |
-| `WGCNA` | Co-expression network analysis |
 | `R`, `ggplot2`, `pheatmap`, `EnhancedVolcano` | Plotting & statistical analysis |
 
 ---
